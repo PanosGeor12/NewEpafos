@@ -1,0 +1,30 @@
+{% extends "baseAcc.html" %}
+{% load static %}
+
+{% block title %}Login {% endblock %}
+
+{% block content %}
+<div class="container w-75">
+  {% if form.errors %}
+    <div class="error">
+        <ul>
+            {% for field, errors in form.errors.items %}
+                <li>{{ field }}: {{ errors|join:", " }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+  {% endif %}
+  <div class="row p-4">
+    <div class="col-lg-6 col-md-8 col-sm-8">
+    <h2>Log in</h2>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div class="col-lg-5 col-md-8 col-sm-3 mx-auto">
+      <img src={% static 'images/login.svg' %}>
+  </div>
+</div>
+{% endblock %}

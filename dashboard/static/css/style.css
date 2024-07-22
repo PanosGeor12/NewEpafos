@@ -1,0 +1,54 @@
+.sidebar{
+  position:fixed;
+  overflow-x:hidden;
+  top:0;
+  left:0;
+  bottom:0;
+  overflow:visible;
+}
+
+.main-content{
+  width:78%;
+  margin-left: 290px;
+  z-index:-1;
+}
+
+.links{
+  font-size: 18px;
+}
+
+.links i{
+  display:inline-block;
+}
+
+.collapsed{
+  display:none !important;
+}
+
+.expanded{
+  display:inline-block;
+}
+
+.expandedBtn{
+  position:fixed;
+  top:50%;
+  left:260px;
+}
+
+.expandedBtn::before{
+  font-family: 'Bootstrap-icons';
+  content: "\F12F";
+  font-size: 1.2em;
+}
+
+.collapsedBtn{
+  position:fixed;
+  top:50%;
+  left:60px;
+}
+
+.collapsedBtn::before{
+  font-family:'Bootstrap-icons';
+  content:"\F138";
+  font-size: 1.2em;
+}

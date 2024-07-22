@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% comment %} Hero Section {% endcomment %}
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+  <h1 class="display-4 fw-bold text-body-emphasis">School Name</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+      sed do eiusmod tempor incididunt ut labore et 
+      dolore magna aliqua. Ut enim ad minim veniam, 
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    </p>
+  </div>
+  <div style="max-height: 60vh;">
+    <div class="container px-5">
+      <img src="{% static 'images/school.jpg' %}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+    </div>
+  </div>
+</div>
+
+{% comment %} Recent news {% endcomment %}
+<div class="container">
+  <h2>Recent News</h2>
+  <div class="row mb-2">
+    {% for post in latest_posts %}
+    <div class="col-md-4" style="height: 300px;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="height: 250px;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis">{{post.category}}</strong>
+          <h3 class="mb-0">{{post.title}}</h3>
+          <div class="mb-1 text-body-secondary">{{post.published}}</div>
+          <p class="card-text mb-auto">{{post.body|safe}}</p>
+          <a href="{{ post.get_absolute_url }}" class="icon-link gap-1 icon-link-hover stretched-link">
+            Continue reading
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

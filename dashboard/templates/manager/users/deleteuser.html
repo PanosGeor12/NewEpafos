@@ -1,0 +1,16 @@
+{% extends 'managerDash.html' %}
+{% load static %}
+
+{% block title %} Confirm User Deletion {% endblock %}
+
+{% block content %}
+<div class="container p-4">
+<h2>Are you sure you want to delete the user {{user.username}}</h2>
+<p>This user is a {{user.role}}</p>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete User" class="btn btn-danger">
+    <button onclick="history.go(-1); return false;" class="btn btn-secondary">No take me back</button>
+  </form>
+</div>
+{% endblock %}

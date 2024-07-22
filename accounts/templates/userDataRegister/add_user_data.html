@@ -1,0 +1,163 @@
+{% extends 'baseAcc.html' %}
+
+{% block title %}Register a new user{% endblock %}
+
+{% block content %}
+<div class="container p-4">
+  <button onclick="history.go(-1); return false;" class="btn btn-secondary float-end">Go back</button>
+</div>
+{% if user.role == 'Student' %}
+  {% if student_form.errors %}
+    {% for field in student_form %}
+      {% for error in field.errors %}
+        {{ error|escape }}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+{% elif user.role == 'Teacher' %}
+  {% if teacher_form.errors %}
+    {% for field in teacher_form %}
+      {% for error in field.errors %}
+        {{ error|escape }}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+<div class="container">
+  <h2 class="w-75 mx-auto">Register a new user</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3 col-lg-8">
+      <h4>{{user.role}} Info</h4>
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">{{user.role}} ID</p>
+            </div>
+            {% if user.role == 'Student'%}
+            <div class="col-sm-9">
+              {{student_form.student_id}}
+            </div>
+            {% elif user.role == 'Teacher' %}
+            <div class="col-sm-9">
+              {{teacher_form.teacher_id}}
+              {{teacher_form.user}}
+            </div>
+            {% endif %}
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">{% if user.role == 'Student'%}Major{% elif user.role == 'Teacher' %}Occupation{% endif %}</p>
+            </div>
+            <div class="col-sm-9">
+              {% if user.role == 'Student' %}
+              {{ student_form.major }}
+              {% elif user.role == 'Teacher' %}
+              {{ teacher_form.occupation }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 col-lg-8">
+      <h4>User Info</h4>
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Role</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.role}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Username</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0" id="username">{{user.username}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Email</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.email}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="col-lg-8">
+    <h4>Personal Info</h4>
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">First Name</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.first_name}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Last Name</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.last_name}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Address</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.address}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <h4>Contact Info</h4>
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Phone Number</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.phone_number}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 w-75 mx-auto">
+      <br>
+      <button type="submit" class="btn btn-primary">Register User</button>
+    </div>
+  </form>
+</div>
+<script>
+  let userChoices = document.querySelector('#id_user');
+  let user = "{{user.username}}";
+  let form = document.querySelector('form');
+  
+  {% comment %} form.addEventListener('input',(e) =>{
+    userChoices.value = user;
+    console.log(user.value);
+  }) {% endcomment %}
+</script>
+{%endblock%}

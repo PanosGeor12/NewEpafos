@@ -1,0 +1,10 @@
+{% extends 'newsbase.html' %}
+{% block title %} {{post.title}} {% endblock %}
+
+{% block content %}
+<div class="container p-4">
+  <button onclick="history.go(-1); return false;" class="btn btn-secondary float-end">Go back</button>
+  <h1>{{post.title}}</h1>
+  <p>{{post.category}}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'baseAcc.html' %}
+
+{% block title %}Register a new user{% endblock %}
+
+{% block content %}
+<div class="container p-4">
+  <button onclick="history.go(-1); return false;" class="btn btn-secondary float-end">Go back</button>
+</div>
+<div class="container">
+  <h2 class="w-75">Registered Users Details</h2>
+  <p>Procceed to the next page to add {{user.role}} details</p>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3 col-lg-8">
+      <h4>User Info</h4>
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Role</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.role}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Username</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.username}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Email</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.email}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="col-lg-8">
+    <h4>Personal Info</h4>
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">First Name</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.first_name}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Last Name</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.last_name}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Address</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.address}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <h4>Contact Info</h4>
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Phone Number</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user.phone_number}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 w-75">
+      <br>
+      <button type="submit" class="btn btn-primary">Continue</button>
+    </div>
+  </form>
+</div>
+{%endblock%}

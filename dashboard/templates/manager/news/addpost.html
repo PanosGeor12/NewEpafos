@@ -1,0 +1,17 @@
+{% extends 'managerDash.html' %}
+
+{% block title %}Create a post {% endblock %}
+{% block header %}
+    {{ post_form.media }}
+{% endblock %}
+{% block content %}
+<div class="container p-4 main-content">
+  <button onclick="history.go(-1); return false;" class="btn btn-secondary float-end">Go back</button>
+    <h2>Compose a new Post</h2>
+    <form method="POST" action="{% url 'news:Create_Post' %}">
+        {% csrf_token %}
+        {{ post_form.as_p }}
+        <button type="submit" class="btn btn-primary">Upload Article</button>
+    </form>
+</div>
+{% endblock %}

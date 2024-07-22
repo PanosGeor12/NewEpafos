@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}| Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    #id_major{
+      padding: .375rem 2.25rem .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      background-color: var(--bs-body-bg);
+      background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+      background-repeat: no-repeat;
+      background-position: right .75rem center;
+      background-size: 16px 12px;
+      border: var(--bs-border-width) solid var(--bs-border-color);
+      border-radius: var(--bs-border-radius);
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+  </style>
+  {% block header %}
+
+  {% endblock %}
+</head>
+<body>
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light sidebar" style="width: 280px; height: 100vh;">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    <img src="{% static 'images/logo.png' %}" alt="logo" style="width:50px;">
+    <span class="fs-4" id="schoolName">School's Name</span>
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a href="{% url 'dashboard:Manager_Home' %}" class="nav-link links {% if request.path == '/manager/' %}active{% else %} link-dark {% endif %}">
+        <i class="bi bi-house" style="font-size:25px; margin-right:15px"></i>
+        <span class="links_text">Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark links">
+        <i class="bi bi-speedometer2" style="font-size:25px; margin-right:15px"></i>
+        <span class="links_text">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'dashboard:Manage_Users' %}" class="nav-link links {% if request.path == '/manager/manageusers/'%}active{% elif '/manager/manageuser/' in request.path  %}active{% else %}link-dark{% endif %}">
+        <i class="bi bi-backpack" style="font-size:25px; margin-right:15px"></i>
+        <span class="links_text">Users</span>
+      </a>
+    </li>
+    <li>
+      {% if request.user.role == 'Manager' %}
+        <a href="{% url 'dashboard:Manage_Posts' %}" class="nav-link links {% if request.path == '/manager/manageposts/' or request.path == '/manager/createpost/' %}active {% elif request.path|slice:13 == '/manager/post' or request.path|slice:18 == '/manager/editpost/' %}active {% else %}link-dark{% endif %}">
+          <i class="bi bi-newspaper" style="font-size:25px; margin-right:15px"></i>
+          <span class="links_text">News</span>
+        </a>
+      {% else %}
+      <a href="#" class="nav-link link-dark links">
+        <i class="bi bi-newspaper" style="font-size:25px; margin-right:15px"></i>
+        <span class="links_text">News</span>
+      </a>
+      {% endif %}
+    </li>
+  </ul>
+  <button class="btn btn-secondary" id="toggleBtn"></button>
+  <hr>
+  <div class="dropdown">
+    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="{% static 'images/person-circle.svg' %}" alt="" style="width:30px; height:30px;" class="rounded-circle me-2">
+      <strong class="profile_name">Hi {{ user.username }} !</strong>
+    </a>
+    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+      <li><a class="dropdown-item" href="#">New project...</a></li>
+      <li><a class="dropdown-item" href="#">Settings</a></li>
+      <li><a class="dropdown-item" href="#">Profile</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><form method="POST" action={% url 'Logout' %} class="d-flex">
+        {% csrf_token %}
+        <button class="dropdown-item" type="submit">Log Out</button>
+      </form></li>
+    </ul>
+  </div>
+</div>
+{% block content %}
+
+{% endblock%}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="{% static 'js/dash.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% extends 'managerDash.html' %}
+{% load static %}
+
+{% block title %}News {% endblock %}
+
+{% block content %}
+<div class="container p-4 main-content">
+  <button onclick="history.go(-1); return false;" class="btn btn-secondary float-end">Go back</button>
+  <h3>Manage Posts</h3>
+  <p>You are now viewing {{posts.category}}</p>
+  <div class="d-flex justify-content-between">
+    <form method="GET" action="{% url 'dashboard:Manage_Posts' %}">
+      <div class="d-flex">      
+        <select name="category" class="form-select" style="width:150px;">
+          <option value="all">Show All</option>
+          {% for value, name in categories %}
+            <option value="{{ value }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-secondary">Filter</button>
+      </div>
+    </form>
+    <a href="{% url 'news:Create_Post' %}" class="btn btn-primary">Create new Post</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Post</th>
+        <th scope="col">Title</th>
+        <th scope="col">Category</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Body</th>
+        <th scope="col">Uploaded</th>
+        <th scope="col">Updated</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <tr>
+        <td><a href="{{post.manager_get_absolute_url}}">{{ post.id }}</a></td>
+        <td>{{ post.title }}</td>
+        <td>{{ post.category}}</td>
+        <td>{{ post.slug }}</td>
+        <td>{{ post.body|safe|truncatewords:5 }}</td>
+        <td>{{ post.created }}</td>
+        <td>{{ post.updated }}</td>
+        <td>{{ post.status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

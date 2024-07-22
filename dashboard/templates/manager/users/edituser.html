@@ -1,0 +1,138 @@
+{% extends 'managerDash.html' %}
+{% load static %}
+
+{% block title %}{{user.first_name}} {{user.last_name}} {% endblock %}
+
+{% block content %}
+<div class="container p-4 main-content">
+  <button onclick="history.go(-1); return false;" class="btn btn-secondary float-end">Go back</button>
+<form method="POST">
+  {% csrf_token %}
+  <div class="col-lg-8">
+    <h3>Edit Profile of {{user.first_name}} {{user.last_name}}</h3>
+    <hr>
+    <h4>Personal Info</h4>
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">First Name</p>
+          </div>
+          <div class="col-sm-9 d-flex justify-content-between">
+            <p class="text-muted mb-0">{{user.first_name}}</p>
+            {{ form.first_name }}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Last Name</p>
+          </div>
+          <div class="col-sm-9 d-flex justify-content-between">
+            <p class="text-muted mb-0">{{user.last_name}}</p>
+            {{ form.last_name }}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Email</p>
+          </div>
+          <div class="col-sm-9 d-flex justify-content-between">
+            <p class="text-muted mb-0">{{user.email}}</p>
+            {{ form.email }}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Username</p>
+          </div>
+          <div class="col-sm-9 d-flex justify-content-between">
+            <p class="text-muted mb-0">{{user.username}}</p>
+            {{ form.username }}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Phone</p>
+          </div>
+          <div class="col-sm-9 d-flex justify-content-between">
+            <p class="text-muted mb-0">{{user.phone_number}}</p>
+            {{ form.phone_number }}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Address</p>
+          </div>
+          <div class="col-sm-9 d-flex justify-content-between">
+            <p class="text-muted mb-0">{{user.address}}</p>
+            {{ form.address }}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% if user.role == 'Student' %}
+<div class="col-lg-8">
+  <h4>Student Info</h4>
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Student ID</p>
+        </div>
+        <div class="col-sm-9 d-flex justify-content-between">
+          <p class="text-muted mb-0">{{user.enrolledstudent.student_id}}</p>
+          {% comment %} {{student_data.student_id}} {% endcomment %}
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Major</p>
+        </div>
+        <div class="col-sm-9 d-flex justify-content-between">
+          <p class="text-muted mb-0">{{user.enrolledstudent.major}}</p>
+          {{student_data.major}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% elif user.role == 'Teacher' %}
+<div class="col-lg-8">
+  <h4>Teacher Info</h4>
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Teacher ID</p>
+        </div>
+        <div class="col-sm-9 d-flex justify-content-between">
+          <p class="text-muted mb-0">{{user.teacher.teacher_id}}</p>
+          {% comment %} {{teacher_data.teacher_id}} {% endcomment %}
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Occupation</p>
+        </div>
+        <div class="col-sm-9 d-flex justify-content-between">
+          <p class="text-muted mb-0">{{user.teacher.occupation}}</p>
+          {{teacher_data.occupation}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<button type="submit" class="btn btn-primary">Save</button>
+<a href="{% url 'dashboard:Delete_User' user.id %}" class="btn btn-danger">Delete User</a>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'managerDash.html' %}
+{% load static %}
+
+{% block title %}Users {% endblock %}
+
+{% block content %}
+<div class="container p-4 main-content">
+  <h3>Manage Users</h3>
+  <p>You are now viewing {{selected_role}}s</p>
+  <div class="d-flex justify-content-between">
+    <form method="GET" action="{% url 'dashboard:Manage_Users' %}">
+      <div class="d-flex">      
+        <select name="role" class="form-select" style="width:150px;">
+          <option value="all">Show All</option>
+          {% for role in roles %}
+            <option value="{{ role }}">{{ role }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-secondary">Filter</button>
+      </div>
+    </form>
+    <a href="{% url 'Register_User' %}" class="btn btn-primary">Add User</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Username</th>
+        <th scope="col">Role</th>
+        {% if selected_role == 'Student' %}
+        <th scope="col">Major</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td><a href="{% url 'dashboard:User_Details' user.id %}">{{ user.id }}</a></td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.role }}</td>
+        {% if selected_role == 'Student' %}
+        <td>{{ user.enrolledstudent.major }}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
