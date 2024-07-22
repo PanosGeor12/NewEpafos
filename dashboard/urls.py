@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 app_name = 'dashboard'
+
 urlpatterns = [
     path('manager/', views.ManagerHome, name='Manager_Home'),
     path('student/', views.StudentHome, name='Student_Home'),
@@ -11,5 +12,6 @@ urlpatterns = [
     path('manager/edituser/<int:id>', views.EditUser, name='Edit_User'),
     path('manager/deleteuser/<int:id>', views.DeleteUser, name='Delete_User'),
     path('manager/manageposts/', views.ManagePosts, name='Manage_Posts'),
-    path('student/schoolnews/', views.SchoolPosts, name='School_News'),
+    path('student/schoolnews/', views.SchoolPosts, name='Student_News'),
+    path('teacher/schoolnews/', views.SchoolPosts, name='Teacher_News')
 ]
