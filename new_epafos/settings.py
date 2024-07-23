@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'dashboard',
     'core',
     'news',
+    'exercises',
 
     #apps installed via pip
     'django_ckeditor_5',
