@@ -52,7 +52,7 @@
           {% elif request.user.is_authenticated and user.role == 'Teacher' %}
           <a href="{% url 'dashboard:Teacher_Home' %}" class="btn btn-primary">E-school</a>
           {% else %}
-          <a href="{% url 'Login' %}" class="btn btn-primary">E-school</a>
+          <a href="{% url 'accounts:Login' %}" class="btn btn-primary">E-school</a>
           {% endif %}
         </div>
       </div>
