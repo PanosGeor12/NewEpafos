@@ -5,11 +5,10 @@
 
 {% block content %}
 <div class="container p-4 main-content">
-  <button onclick="history.go(-1); return false;" class="btn btn-secondary float-end">Go back</button>
   <h3>Manage Posts</h3>
   <p>You are now viewing {{posts.category}}</p>
   <div class="d-flex justify-content-between">
-    <form method="GET" action="{% url 'dashboard:Manage_Posts' %}">
+    <form method="GET" action="{% url 'news:Manage_Posts' %}">
       <div class="d-flex">      
         <select name="category" class="form-select" style="width:150px;">
           <option value="all">Show All</option>

@@ -1,0 +1,28 @@
+{% extends 'teacherDash.html' %}
+
+{% block title %}Exercises {% endblock %}
+
+{% block content %}
+  <div class="container p-4 main-content">
+    <h3>Manage Exercises</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Exercise Name</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for exercise in exercises %}
+            <td>{{forloop.counter}}</td>
+            <td>{{exercise.name }}</td>
+            <td></td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

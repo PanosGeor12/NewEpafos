@@ -49,14 +49,14 @@
       </a>
     </li>
     <li>
-      <a href="{% url 'dashboard:Manage_Users' %}" class="nav-link links {% if request.path == '/manager/manageusers/'%}active{% elif '/manager/manageuser/' in request.path  %}active{% else %}link-dark{% endif %}">
+      <a href="{% url 'accounts:Manage_Users' %}" class="nav-link links {% if request.path == '/manager/manageusers/'%}active{% elif '/manager/manageuser/' in request.path  %}active{% else %}link-dark{% endif %}">
         <i class="bi bi-backpack" style="font-size:25px; margin-right:15px"></i>
         <span class="links_text">Users</span>
       </a>
     </li>
     <li>
       {% if request.user.role == 'Manager' %}
-        <a href="{% url 'dashboard:Manage_Posts' %}" class="nav-link links {% if request.path == '/manager/manageposts/' or request.path == '/manager/createpost/' %}active {% elif request.path|slice:13 == '/manager/post' or request.path|slice:18 == '/manager/editpost/' %}active {% else %}link-dark{% endif %}">
+        <a href="{% url 'news:Manage_Posts' %}" class="nav-link links {% if request.path == '/manager/manageposts/' or request.path == '/manager/createpost/' %}active {% elif request.path|slice:13 == '/manager/post' or request.path|slice:18 == '/manager/editpost/' %}active {% else %}link-dark{% endif %}">
           <i class="bi bi-newspaper" style="font-size:25px; margin-right:15px"></i>
           <span class="links_text">News</span>
         </a>
@@ -80,7 +80,7 @@
       <li><a class="dropdown-item" href="#">Settings</a></li>
       <li><a class="dropdown-item" href="#">Profile</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><form method="POST" action={% url 'Logout' %} class="d-flex">
+      <li><form method="POST" action={% url 'accounts:Logout' %} class="d-flex">
         {% csrf_token %}
         <button class="dropdown-item" type="submit">Log Out</button>
       </form></li>

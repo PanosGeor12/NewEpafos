@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from .models import SchoolUser
 from .forms import SchoolUserChangeForm, SchoolUserCreationForm
 from django import forms
+from .models import EnrolledStudent, Major, Teacher
 import datetime
 
 class SchoolUserAdmin(UserAdmin):
@@ -26,3 +27,6 @@ class SchoolUserAdmin(UserAdmin):
                    ('Contact Info', {'fields':('email', 'phone_number')}))
 
 admin.site.register(SchoolUser, SchoolUserAdmin)
+admin.site.register(EnrolledStudent)
+admin.site.register(Major)
+admin.site.register(Teacher)

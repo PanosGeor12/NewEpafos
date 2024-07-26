@@ -30,15 +30,13 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark links"
-        {% comment %} {% if request.path == '/student/#/'%}active{% elif '/student/#/' in request.path  %}active{% else %}link-dark{% endif %}" {% endcomment %}
-        style="font-size:18px;">
+        <a href="{% url 'exercises:Teacher_Exercises' %}" class="nav-link links {% if request.path == '/teacher/exercises' %}active {% else %}link-dark{% endif %}" style="font-size:18px;">
           <i class="bi bi-backpack" style="font-size:25px; margin-right:15px"></i>
           <span class="links_text">Exercises</span>
         </a>
       </li>
       <li>
-        <a href="{% url 'dashboard:Teacher_News' %}" class="nav-link links {% if request.path == '/teacher/schoolnews/' %}active{% else %} link-dark {% endif %}">
+        <a href="{% url 'news:Teacher_News' %}" class="nav-link links {% if request.path == '/teacher/schoolnews/' %}active{% else %} link-dark {% endif %}">
           <i class="bi bi-newspaper" style="font-size:25px; margin-right:15px"></i>
           <span class="links_text">News</span>
         </a>
@@ -56,7 +54,7 @@
         <li><a class="dropdown-item" href="#">Settings</a></li>
         <li><a class="dropdown-item" href="#">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><form method="POST" action={% url 'Logout' %} class="d-flex">
+        <li><form method="POST" action={% url 'accounts:Logout' %} class="d-flex">
           {% csrf_token %}
           <button class="dropdown-item" type="submit">Log Out</button>
         </form></li>

@@ -8,7 +8,7 @@
   <h3>Manage Users</h3>
   <p>You are now viewing {{selected_role}}s</p>
   <div class="d-flex justify-content-between">
-    <form method="GET" action="{% url 'dashboard:Manage_Users' %}">
+    <form method="GET" action="{% url 'accounts:Manage_Users' %}">
       <div class="d-flex">      
         <select name="role" class="form-select" style="width:150px;">
           <option value="all">Show All</option>
@@ -19,7 +19,7 @@
         <button type="submit" class="btn btn-secondary">Filter</button>
       </div>
     </form>
-    <a href="{% url 'Register_User' %}" class="btn btn-primary">Add User</a>
+    <a href="{% url 'accounts:Register_User' %}" class="btn btn-primary">Add User</a>
   </div>
   <table class="table">
     <thead>
@@ -38,7 +38,7 @@
     <tbody>
       {% for user in users %}
       <tr>
-        <td><a href="{% url 'dashboard:User_Details' user.id %}">{{ user.id }}</a></td>
+        <td><a href="{% url 'accounts:User_Details' user.id %}">{{ user.id }}</a></td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email }}</td>

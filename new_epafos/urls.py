@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('dashboard.urls', namespace='dashboard')),
     path('', include('core.urls', namespace='core')),
-    path('', include('news.urls', namespace='news'))
+    path('', include('news.urls', namespace='news')),
+    path('', include('exercises.urls', namespace='exercises')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
