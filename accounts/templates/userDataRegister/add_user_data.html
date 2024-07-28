@@ -6,23 +6,6 @@
 <div class="container p-4">
   <button onclick="history.go(-1); return false;" class="btn btn-secondary float-end">Go back</button>
 </div>
-{% if user.role == 'Student' %}
-  {% if student_form.errors %}
-    {% for field in student_form %}
-      {% for error in field.errors %}
-        {{ error|escape }}
-      {% endfor %}
-    {% endfor %}
-  {% endif %}
-{% elif user.role == 'Teacher' %}
-  {% if teacher_form.errors %}
-    {% for field in teacher_form %}
-      {% for error in field.errors %}
-        {{ error|escape }}
-      {% endfor %}
-    {% endfor %}
-  {% endif %}
-{% endif %}
 
 <div class="container">
   <h2 class="w-75 mx-auto">Register a new user</h2>

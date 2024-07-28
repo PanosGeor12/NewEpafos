@@ -34,9 +34,9 @@ def RegisterUser(request):
       if form.is_valid():
         user = form.save()
         if user.role == 'Student':
-          return redirect('Add_Student_Data', user.id)
+          return redirect('accounts:Add_Student_Data', user.id)
         elif user.role == 'Teacher':
-          return redirect('Add_Teacher_Data', user.id)
+          return redirect('accounts:Add_Teacher_Data', user.id)
     else:
       form = SchoolUserCreationForm()
 
@@ -53,7 +53,7 @@ def AddStudentData(request, id):
           student_id = student_form.cleaned_data['student_id']
       )
       new_student.save()
-      return redirect('Manage_Users')
+      return redirect('accounts:Manage_Users')
     return render(request, 'userDataRegister/add_user_data.html', {'user':user,
                                                                   'student_form':student_form})
   return render(request, 'userDataRegister/user_data.html', {'user':user})
@@ -69,7 +69,7 @@ def AddTeacherData(request, id):
         occupation = teacher_form.cleaned_data['occupation']
       )
       new_teacher.save()
-      return redirect('Manage_Users')
+      return redirect('accounts:Manage_Users')
     return render(request, 'userDataRegister/add_user_data.html', {'user':user,
                                                                   'teacher_form':teacher_form})
   return render(request, 'userDataRegister/user_data.html', {'user':user})
@@ -113,12 +113,16 @@ def EditUser(request, id):
       if form.is_valid() and student_data.is_valid():
           form.save()
           student_data.save()
-          return redirect('User_Details', user.id)
+          return redirect('accounts:User_Details', user.id)
     elif user.role == 'Teacher':
       if form.is_valid() and teacher_data.is_valid():
           form.save()
           teacher_data.save()
-          return redirect('User_Details', user.id)
+          return redirect('accounts:User_Details', user.id)
+    else: 
+      if form.is_valid():
+        form.save()
+        return redirect('accounts:User_Details', user.id)
   else:
     form = forms.EditSchoolUser(instance=user)
     teacher_data = forms.EditTeacherData(instance=teacher)if user.role == 'Teacher' else None
@@ -133,7 +137,7 @@ def DeleteUser(request, id):
   user = SchoolUser.objects.get(id=id)
   if request.method == 'POST':
       user.delete()
-      return redirect('Manage_Users')
+      return redirect('accounts:Manage_Users')
   
   return render(request, 'manageusers/deleteuser.html',{'user':user})
 
