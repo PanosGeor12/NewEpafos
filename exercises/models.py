@@ -18,7 +18,7 @@ class Exercise(models.Model):
   slug = models.SlugField(max_length=255)
   for_major = models.ForeignKey(Major,
                                 on_delete=models.CASCADE)
-  for_students = models.ManyToManyField(SchoolUser)
+  for_students = models.ManyToManyField(SchoolUser, limit_choices_to={'role':'Student'})
   uploaded_files = models.FileField(upload_to='exercises/')
   uploaded = models.DateTimeField(auto_now=True)
   deadline = models.DateTimeField(auto_created=False)

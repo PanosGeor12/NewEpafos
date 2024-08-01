@@ -13,7 +13,7 @@ class StudentDataForm(forms.ModelForm):
       'student_id' : forms.TextInput(attrs={'placeholder':'enter students id',
                                                                           'class':'form-control student_id_field', 
                                                                           'id':'studentID',
-                                                                          'max_length':'4'})
+                                                                     'max_length':'4'})
     }
 
 class TeacherDataForm(forms.ModelForm):
@@ -29,12 +29,6 @@ class TeacherDataForm(forms.ModelForm):
                                                                 'class':'form-control occupation_field',
                                                                 'id':'occupation'})                                 
     }
-
-  # teacher_id = forms.CharField(max_length=10,
-  #                             widget=forms.TextInput(attrs={'placeholder':'enter teachers id',
-  #                                                               'class':'form-control teacher_id_field',
-  #                                                               'id':'teacherID'}))
-  # occupation = forms.CharField(widget=forms.TextInput()
 
 class EditSchoolUser(UserChangeForm):
   username = forms.CharField(widget=forms.TextInput(attrs={'class':'form_field form-control w-50', 'id':'username_field', 'placeholder':'enter users username'}), required=False)

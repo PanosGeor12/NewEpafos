@@ -1,0 +1,15 @@
+{% extends 'teacherDash.html' %}
+
+{% block title %}Add a new Exercise {% endblock %}
+
+{% block header %}{{exercise_form.media}}{% endblock %}
+
+{% block content %}
+  <div class="container p-4 main-content">
+    <h3>Add a new Exercise</h3>
+    <form method="POST">
+      {{exercise_form.as_p}}
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+{% endblock %}

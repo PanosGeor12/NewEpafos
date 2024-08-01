@@ -5,13 +5,15 @@
 {% block content %}
   <div class="container p-4 main-content">
     <h3>Manage Exercises</h3>
+    <a href="{% url 'exercises:Add_New_Exercise' %}" class="btn btn-primary">Add Exercise</a>
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Exercise Name</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col"></th>
+          <th scope="col">Related Lesson</th>
+          <th scope="col">Uploaded Files</th>
         </tr>
       </thead>
       <tbody>
