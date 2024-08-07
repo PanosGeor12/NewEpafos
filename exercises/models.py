@@ -3,15 +3,6 @@ from django_ckeditor_5.fields import CKEditor5Field
 from accounts.models import Major
 from accounts.models import SchoolUser
 
-def uploadPath(instance, filename):
-  major = instance.schooluser.major.name
-  username = instance.schooluser.username
-  return f'files/{major}/{username}/{filename}'
-
-def exerciseFilePath(instance, filename):
-  username = instance.schooluser.username
-  return f'exercises/{username}/{filename}'
-
 class Exercise(models.Model):
   name = models.CharField(max_length=255)
   description = CKEditor5Field(config_name='extends')

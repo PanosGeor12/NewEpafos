@@ -8,6 +8,7 @@
   <div class="container p-4 main-content">
     <h3>Add a new Exercise</h3>
     <form method="POST">
+      {% csrf_token %}
       {{exercise_form.as_p}}
       <input type="submit" class="btn btn-primary">
     </form>

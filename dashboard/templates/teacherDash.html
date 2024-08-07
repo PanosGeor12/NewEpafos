@@ -33,7 +33,7 @@
         </a>
       </li>
       <li>
-        <a href="{% url 'exercises:Teacher_Exercises' %}" class="nav-link links {% if request.path == '/teacher/exercises' %}active {% else %}link-dark{% endif %}" style="font-size:18px;">
+        <a href="{% url 'exercises:Teacher_Exercises' %}" class="nav-link links {% if request.path == '/teacher/exercises' %}active {% elif  request.path == '/teacher/addexercise' %}active {% else %}link-dark{% endif %}" style="font-size:18px;">
           <i class="bi bi-backpack" style="font-size:25px; margin-right:15px"></i>
           <span class="links_text">Exercises</span>
         </a>

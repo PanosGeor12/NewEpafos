@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from dashboard.models import Major
 
 class SchoolUser(AbstractUser):
   id = models.AutoField(primary_key=True)
@@ -9,12 +10,6 @@ class SchoolUser(AbstractUser):
   role = models.CharField(max_length=20, choices={'Teacher':'Teacher', 'Student':'Student', 'Manager':'Manager'})
   phone_number = models.CharField(max_length=10)
   address = models.CharField(max_length=100, null=True)
-  
-class Major(models.Model):
-  name = models.CharField(max_length=255)
-  description = models.TextField()
-  def __str__(self):
-    return self.name
 
 class EnrolledStudent(models.Model):
   def get_majors():

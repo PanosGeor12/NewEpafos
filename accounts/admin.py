@@ -28,5 +28,4 @@ class SchoolUserAdmin(UserAdmin):
 
 admin.site.register(SchoolUser, SchoolUserAdmin)
 admin.site.register(EnrolledStudent)
-admin.site.register(Major)
 admin.site.register(Teacher)
